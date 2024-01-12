@@ -51,61 +51,63 @@ namespace CarInsurance.Controllers
         {
             if (ModelState.IsValid)
             {
+                // calculate age of insuree
+                DateTime insureeBday = insuree.DateOfBirth;
+                DateTime currentDate = DateTime.Now;
+                var insureeAge = currentDate.Year - insureeBday.Year;
+                //Console.WriteLine(insureeAge);
+
+                //Calculate Quote
+                //age restrictions
+                if (insureeAge < 18)
+                { insuree.Quote = insuree.Quote + 100; }
+                else if (insureeAge >= 18 && insureeAge < 26)
+                { insuree.Quote = insuree.Quote + 50; }
+                else
+                { insuree.Quote = insuree.Quote + 25; }
+
+                //car year restrictions
+                if (insuree.CarYear < 2000 || insuree.CarYear > 2015)
+                { insuree.Quote = insuree.Quote + 25; }
+
+                //car make restrictions
+                if (insuree.CarMake == "Porsche")
+                { insuree.Quote = insuree.Quote + 25; }
+
+                if (insuree.CarMake == "Porsche" && insuree.CarModel == "911 Carrera")
+                { insuree.Quote = insuree.Quote + 25; }
+
+                //Speeding ticket amount
+
+                if (insuree.SpeedingTickets>0)
+                {
+                    insuree.Quote = insuree.Quote + (insuree.SpeedingTickets * 10);
+                }
+
+                //DUI bool
+                if (insuree.DUI = true)
+                {
+                    insuree.Quote = Decimal.Multiply(insuree.Quote, 1.25m);
+                }
+
+                //Coverage type bool
+                if (insuree.CoverageType = true)
+
+                { insuree.Quote = Decimal.Multiply(insuree.Quote, 1.5m); }
+
+
 
 
                 db.Insurees.Add(insuree);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            // calculate age of insuree
-            DateTime insureeBday = insuree.DateOfBirth;
-            DateTime currentDate = DateTime.Now;
-            var insureeAge = currentDate.Year - insureeBday.Year;
-            Console.WriteLine(insureeAge);
-
-            //Calculate Quote
-            //age restrictions
-            if (insureeAge < 18)
-            { insuree.Quote = insuree.Quote + 100; }
-            else if (insureeAge > 18 && insureeAge < 26)
-            { insuree.Quote = insuree.Quote + 50}
-            else
-            { insuree.Quote = insuree.Quote + 25}
-
-            //car year restrictions
-            if (insuree.CarYear < 2000 || insuree.CarYear > 2015)
-            { insuree.Quote = insuree.Quote + 25}
-
-            //car make restrictions
-            if (insuree.CarMake == "Porsche")
-            { insuree.Quote = insuree.Quote + 25}
-
-            if (insuree.CarMake == "Porsche" && insuree.CarModel == "911 Carrera")
-            { insuree.Quote = insuree.Quote + 50}
-
-
-
-
-
-            db.Insurees.Add(insuree.Quote);
-            db.SaveChanges();
-
-
-
-
-
-
-
-    
+      
 
             return View(insuree);
         }
 
         
-      
-        
-        
-
         // GET: Insuree/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -171,5 +173,29 @@ namespace CarInsurance.Controllers
             }
             base.Dispose(disposing);
         }
+    
+        public ActionResult Admin()
+        {
+            using (InsuranceEntities db = new InsuranceEntities())
+            {
+                //var person = db.Insuree();
+                //var insuree = new List<Insuree>();
+              //  foreach (var insuree in Insurees)
+                //{
+                   // insuree.FirstName;
+                    //insuree.LastName;
+                    //insuree.EmailAddress;
+                    //insuree.Quote;
+                    //insurees.Add(insuree);
+
+               // }
+         
+              
+
+
+                return View();
+            }
+        }
+    
     }
 }

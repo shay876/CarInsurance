@@ -133,7 +133,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\GetQuote.cs" />
     <Compile Include="Models\InsuranceEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -152,7 +151,9 @@
     <Compile Include="Models\Insuree.cs">
       <DependentUpon>InsuranceEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Classvm.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Insurance.mdf" />
@@ -216,6 +217,7 @@
     <Content Include="Views\Insuree\Details.cshtml" />
     <Content Include="Views\Insuree\Edit.cshtml" />
     <Content Include="Views\Insuree\Index.cshtml" />
+    <Content Include="Views\Home\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
