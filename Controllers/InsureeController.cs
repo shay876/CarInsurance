@@ -49,6 +49,8 @@ namespace CarInsurance.Controllers
         public ActionResult Create([Bind(Include = "Id,FirstName,LastName,EmailAddress,DateOfBirth," +
             "CarYear,CarMake,CarModel,DUI,SpeedingTickets,CoverageType,Quote")] Insuree insuree)
         {
+            insuree.Quote = 50m;
+           
             if (ModelState.IsValid)
             {
                 // calculate age of insuree
@@ -178,22 +180,17 @@ namespace CarInsurance.Controllers
         {
             using (InsuranceEntities db = new InsuranceEntities())
             {
-                
-               var insuree = new List<Insuree>();
-               foreach (var insuree in Insuree)
-                {
-                    insuree.FirstName;
-                    insuree.LastName;
-                    insuree.EmailAddress;
-                    insuree.Quote;
-                    insurees.Add(insuree);
 
-                }
-         
-              
+                // db.Insurees.ToList();
 
-
-                return View(insuree);
+                // insuree.FirstName;
+                // insuree.LastName;
+                // insuree.EmailAddress;
+                // insuree.Quote;
+                // insurees.Add(insuree);
+                //return View();
+               
+                return View(db.Insurees.ToList());
             }
         }
     

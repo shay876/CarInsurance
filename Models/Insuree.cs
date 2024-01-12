@@ -32,6 +32,6 @@ namespace CarInsurance.Models
         public bool DUI { get; set; }
         public int SpeedingTickets { get; set; }
         public bool CoverageType { get; set; }
-        public decimal Quote { get; set; } = 50m;
+        public decimal Quote { get; set; } 
     }
 }
