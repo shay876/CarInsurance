@@ -178,22 +178,22 @@ namespace CarInsurance.Controllers
         {
             using (InsuranceEntities db = new InsuranceEntities())
             {
-                //var person = db.Insuree();
-                //var insuree = new List<Insuree>();
-              //  foreach (var insuree in Insurees)
-                //{
-                   // insuree.FirstName;
-                    //insuree.LastName;
-                    //insuree.EmailAddress;
-                    //insuree.Quote;
-                    //insurees.Add(insuree);
+                
+               var insuree = new List<Insuree>();
+               foreach (var insuree in Insuree)
+                {
+                    insuree.FirstName;
+                    insuree.LastName;
+                    insuree.EmailAddress;
+                    insuree.Quote;
+                    insurees.Add(insuree);
 
-               // }
+                }
          
               
 
 
-                return View();
+                return View(insuree);
             }
         }
     
